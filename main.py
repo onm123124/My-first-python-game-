@@ -9,11 +9,11 @@ def main():
     screen = pygame.display.set_mode((0,0),0,0)
     pygame.display.set_caption('Highway maniac')
     pygame.display.set_icon(Car().sprite)
-    screen.blit(background().sprite,(250,250))
+    screen.blit(background().sprite,(0,0))
     
     #The background and stuff
     running = True #change this to "True" for forever running
-    while running == False:
+    while running == True:
         for event in pygame. event.get():
             if event. type == pygame.quit:
                 running = False
