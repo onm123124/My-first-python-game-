@@ -1,0 +1,6 @@
+Simple 
+fun
+Theme : highway
+objects: road, car, lanes, other cars, background, milestone, personal best
+objective: Dodge as many cars as possible and get as further as possible
+files: main, car, road, other cars, sprites, background, mileestones and personal best.
