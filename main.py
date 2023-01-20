@@ -5,12 +5,12 @@ from Background import background
 from pygame.math import Vector2
 
 def main():
-    pygame.init
-    DISPLAY = pygame.display.set_mode((0,0),0,0)
+    pygame.init()
+    screen = pygame.display.set_mode((0,0),0,0)
     pygame.display.set_caption('Highway maniac')
     pygame.display.set_icon(Car().sprite)
-    pygame.image(background().sprite)
-    pygame.display.set_mode()
+    screen.blit(background().sprite,(250,250))
+    
     #The background and stuff
     running = True #change this to "True" for forever running
     while running == False:
