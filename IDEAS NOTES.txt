@@ -1,5 +1,7 @@
 Simple 
 fun
+
+Name = Highway maniac
 Theme : highway
 objects: road, car, lanes, other cars, background, milestone, personal best
 objective: Dodge as many cars as possible and get as further as possible
