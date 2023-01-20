@@ -6,14 +6,14 @@ from pygame.math import Vector2
 
 def main():
     pygame.init()
-    screen = pygame.display.set_mode((0,0),0,0)
+    screen = pygame.display.set_mode((250,250),0,0)
     pygame.display.set_caption('Highway maniac')
     pygame.display.set_icon(Car().sprite)
-    screen.blit(background().sprite,(0,0))
+    screen.blit(background().sprite,(200,100))
     
     #The background and stuff
-    running = True #change this to "True" for forever running
-    while running == True:
+    running = False #change this to "True" for forever running
+    while running:
         for event in pygame. event.get():
             if event. type == pygame.quit:
                 running = False
