@@ -5,21 +5,34 @@ from Background import background
 from pygame.math import Vector2
 
 def main():
+    screen = pygame.display.set_mode((0,0))
+    car = Car()
+    car_position = car.position
+    car_velocity = car.velocity
+    car_velocity.x += car.acceleration
+    car_velocity.y += car.acceleration
+    car_position.x += car_velocity.x
+    car_position.y += car_velocity.y
+    screen.blit(car.sprite, (car_position.x, car_position.y))
+    #making car
+
     pygame.init()
-    screen = pygame.display.set_mode((250,250),0,0)
+   
     pygame.display.set_caption('Highway maniac')
-    pygame.display.set_icon(Car().sprite)
-    screen.blit(background().sprite,(200,100))
-    
+    #title and stuff
+    screen.blit(background().sprite,(0,0))
+    #Background
+
+    pygame.display.update()
     #The background and stuff
-    running = False #change this to "True" for forever running
+     
+    running = True #change this to "True" for forever running
     while running:
-        for event in pygame. event.get():
-            if event. type == pygame.quit:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
                 running = False
-            if running == False:
                 pygame.quit()
     #infinite running loop if needed
 
 if __name__ == "__main__":
-    main()
+    main() #end Main sequence
