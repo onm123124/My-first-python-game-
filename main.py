@@ -3,30 +3,33 @@ from car import Car
 from Background import background
 #import the class "car" and class "background"
 from pygame.math import Vector2
-
+#import the shit
 def main():
     pygame.init()
-
+#initialize
     car = Car()
     car_velocity = car.velocity
     screen_height, screen_width = 1920, 1080
     screen = pygame.display.set_mode((1920,1080))
     car_position = pygame.Vector2(car.position)
-    
+    #define variables
     pygame.display.set_caption('Highway maniac')
-    
+    #title
     pygame.display.update()
+    #clean screen
     running = True
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
                 pygame.quit()
+        #infinte running loop
         screen.blit(background().sprite,(0,0))
         car_velocity.x += car.acceleration
         car_velocity.y += car.acceleration
         car_position += car_velocity
         screen.blit(car.sprite, (car_position.x, car_position.y))
+        #make the car and background
         pygame.display.update()
 
         keys = pygame.key.get_pressed()
@@ -45,7 +48,7 @@ def main():
             car_position.x = (screen_width/2) - -250
         if car_position.x > (screen_width/2) + 500: # <-- right edge of the road
             car_position.x = (screen_width/2) + 500
-        
+        #stop car from going into grass
         pygame.display.update()
 if __name__ == "__main__":
     main() #run Main sequence
