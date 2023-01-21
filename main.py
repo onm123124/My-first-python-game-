@@ -9,12 +9,10 @@ def main():
 
     car = Car()
     car_velocity = car.velocity
-    screen_width, screen_height = pygame.display.get_surface,pygame.display.get_surface
+    screen_height, screen_width = 1920, 1080
     screen = pygame.display.set_mode((1920,1080))
     car_position = pygame.Vector2(car.position)
     
-    
-
     pygame.display.set_caption('Highway maniac')
     
     pygame.display.update()
@@ -41,8 +39,13 @@ def main():
                 #make car go back to center when it get out
         if car_position.x > screen.get_width() or car_position.x < 0 or car_position.y > screen.get_height() or car_position.y < 0:
             car_position = pygame.Vector2(750,1080)
-
+        
         pygame.display.update()
-
+        if car_position.x < (screen_width/2) - -250: # <-- left edge of the road
+            car_position.x = (screen_width/2) - -250
+        if car_position.x > (screen_width/2) + 500: # <-- right edge of the road
+            car_position.x = (screen_width/2) + 500
+        
+        pygame.display.update()
 if __name__ == "__main__":
-    main() #end Main sequence
+    main() #run Main sequence
