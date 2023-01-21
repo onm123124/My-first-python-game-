@@ -1,8 +1,10 @@
 import pygame
 from car import Car 
 from Background import background
-#import the class "car" and class "background"
+from Enemy import Enemy
+#import the class "car" and class "background" and other files
 from pygame.math import Vector2
+import random
 #import the shit
 def main():
     pygame.init()
@@ -13,6 +15,11 @@ def main():
     screen = pygame.display.set_mode((1920,1080))
     car_position = pygame.Vector2(car.position)
     #define variables
+    #Enemy car code starts here:
+    enemy = Enemy()
+    enemy_velocity = enemy.velocity
+    enemy_position = enemy.position
+        
     pygame.display.set_caption('Highway maniac')
     #title
     pygame.display.update()
@@ -29,6 +36,8 @@ def main():
         car_velocity.y += car.acceleration
         car_position += car_velocity
         screen.blit(car.sprite, (car_position.x, car_position.y))
+        
+        screen.blit(Enemy().sprite,(enemy_position))
         #make the car and background
         pygame.display.update()
 
@@ -50,5 +59,7 @@ def main():
             car_position.x = (screen_width/2) + 500
         #stop car from going into grass
         pygame.display.update()
+
+        
 if __name__ == "__main__":
     main() #run Main sequence
