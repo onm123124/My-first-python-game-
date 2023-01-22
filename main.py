@@ -15,6 +15,8 @@ def main():
     screen_height, screen_width = 1920, 1080
     screen = pygame.display.set_mode((1920,1080))
     car_position = pygame.Vector2(car.position)
+    player_rect = pygame.Rect(car_position.x, car_position.y,car.sprite.get_width(), car.sprite.get_height())
+    
     #define variables
     #Enemy car code starts here:
     enemy = Enemy()
@@ -24,6 +26,7 @@ def main():
     right_lane = enemy.right_lane
     enemy_spawn_counter = 0
     enemy_spawn_interval = 120
+    enemy_rect = pygame.Rect(enemy_position.x, enemy_position.y, enemy.sprite.get_width(), enemy.sprite.get_height())
         
     pygame.display.set_caption('Highway maniac')
     #title
@@ -41,8 +44,11 @@ def main():
         car_velocity.y += car.acceleration
         car_position += car_velocity
         screen.blit(car.sprite, (car_position.x, car_position.y))
-        
-        enemy_spawn_counter += 1
+        car_rect = pygame.Rect(car_position.x, car_position.y, car.sprite.get_width(), car.sprite.get_height())
+        enemy_rect = pygame.Rect(enemy_position.x, enemy_position.y, enemy.sprite.get_width(), enemy.sprite.get_height())
+
+        if car_rect.colliderect(enemy_rect):
+            enemy_spawn_counter += 1
         if enemy_spawn_counter == enemy_spawn_interval:
             enemy = Enemy()
             enemy_velocity = enemy.velocity
@@ -70,7 +76,16 @@ def main():
             car_position.x = (screen_width/2) + 500
         #stop car from going into grass
         pygame.display.update()
-
-        
+        print (enemy_position)
+        pass
 if __name__ == "__main__":
     main() #run Main sequence
+def reset_game():
+    enemy = Enemy()
+    left_lane = enemy.left_lane
+    right_lane = enemy.right_lane
+    car_position = pygame.Vector2(750, 1080) # reset car position
+    car_velocity = pygame.Vector2(0,0) # reset car velocity
+    enemy_position = pygame.Vector2(random.choice(left_lane, right_lane)) # reset enemy position
+    enemy_velocity = pygame.Vector2(0, 10) # reset enemy velocity
+    enemy_spawn_counter = 0 # reset enemy spawn counter
