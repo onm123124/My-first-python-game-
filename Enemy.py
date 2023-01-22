@@ -4,7 +4,7 @@ import random
 class Enemy:
     def __init__(self):
         self.left_lane = (750,1080)
-        self.right_lane = (1250,1080)
+        self.right_lane = (1050,1080)
         if random.random() > 0.5:
             self.position = pygame.Vector2(self.left_lane)
         else:
