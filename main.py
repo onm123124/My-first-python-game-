@@ -5,6 +5,7 @@ from Enemy import Enemy
 #import the class "car" and class "background" and other files
 from pygame.math import Vector2
 import random
+import time
 #import the shit
 def main():
     pygame.init()
@@ -19,6 +20,10 @@ def main():
     enemy = Enemy()
     enemy_velocity = enemy.velocity
     enemy_position = enemy.position
+    left_lane = enemy.left_lane
+    right_lane = enemy.right_lane
+    enemy_spawn_counter = 0
+    enemy_spawn_interval = 120
         
     pygame.display.set_caption('Highway maniac')
     #title
@@ -37,8 +42,14 @@ def main():
         car_position += car_velocity
         screen.blit(car.sprite, (car_position.x, car_position.y))
         
-        screen.blit(Enemy().sprite,(enemy_position))
-        #make the car and background
+        enemy_spawn_counter += 1
+        if enemy_spawn_counter == enemy_spawn_interval:
+            enemy = Enemy()
+            enemy_velocity = enemy.velocity
+            enemy_position = enemy.position
+            enemy_spawn_counter = 0
+        enemy_position += enemy_velocity       
+        screen.blit(enemy.sprite, (enemy_position.x, enemy_position.y))
         pygame.display.update()
 
         keys = pygame.key.get_pressed()
