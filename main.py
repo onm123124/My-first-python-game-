@@ -2,20 +2,12 @@ import pygame
 from car import Car 
 from Background import background
 from Enemy import Enemy
+from reset import Reset
 #import the class "car" and class "background" and other files
 from pygame.math import Vector2
 import random
 import time
 #import the shit
-def reset_game():#reset system
-    enemy = Enemy()
-    left_lane = enemy.left_lane
-    right_lane = enemy.right_lane
-    car_position = pygame.Vector2(750, 1080) # reset car position
-    car_velocity = pygame.Vector2(0,0) # reset car velocity
-    enemy_position = pygame.Vector2(random.choice(left_lane, right_lane)) # reset enemy position
-    enemy_velocity = pygame.Vector2(0, 10) # reset enemy velocity
-    enemy_spawn_counter = 0 # reset enemy spawn counter
 def main():
     pygame.init()
 #initialize
@@ -58,6 +50,7 @@ def main():
 
         if car_rect.colliderect(enemy_rect):
             enemy_spawn_counter += 1
+            Reset()
         if enemy_spawn_counter == enemy_spawn_interval:
             enemy = Enemy()
             enemy_velocity = enemy.velocity
@@ -66,6 +59,8 @@ def main():
         enemy_position += enemy_velocity       
         screen.blit(enemy.sprite, (enemy_position.x, enemy_position.y))
         pygame.display.update()
+        if enemy_position.y >= 1080:
+            enemy_position.y = -100
 
         keys = pygame.key.get_pressed()
         if keys[pygame.K_a]:
