@@ -7,6 +7,15 @@ from pygame.math import Vector2
 import random
 import time
 #import the shit
+def reset_game():#reset system
+    enemy = Enemy()
+    left_lane = enemy.left_lane
+    right_lane = enemy.right_lane
+    car_position = pygame.Vector2(750, 1080) # reset car position
+    car_velocity = pygame.Vector2(0,0) # reset car velocity
+    enemy_position = pygame.Vector2(random.choice(left_lane, right_lane)) # reset enemy position
+    enemy_velocity = pygame.Vector2(0, 10) # reset enemy velocity
+    enemy_spawn_counter = 0 # reset enemy spawn counter
 def main():
     pygame.init()
 #initialize
@@ -80,12 +89,3 @@ def main():
         pass
 if __name__ == "__main__":
     main() #run Main sequence
-def reset_game():
-    enemy = Enemy()
-    left_lane = enemy.left_lane
-    right_lane = enemy.right_lane
-    car_position = pygame.Vector2(750, 1080) # reset car position
-    car_velocity = pygame.Vector2(0,0) # reset car velocity
-    enemy_position = pygame.Vector2(random.choice(left_lane, right_lane)) # reset enemy position
-    enemy_velocity = pygame.Vector2(0, 10) # reset enemy velocity
-    enemy_spawn_counter = 0 # reset enemy spawn counter
