@@ -58,8 +58,9 @@ def main():
             enemy_spawn_counter = 0
         enemy_position += enemy_velocity       
         screen.blit(enemy.sprite, (enemy_position.x, enemy_position.y))
-        
         pygame.display.update()
+        if enemy_position.y >= 1080:
+            enemy_position.y = -100
 
         keys = pygame.key.get_pressed()
         if keys[pygame.K_a]:
